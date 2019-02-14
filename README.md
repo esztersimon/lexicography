@@ -4,13 +4,14 @@ Teaching materials of the course "Introduction to the (computational) lexicograp
 Lecturers: Eszter Simon and Veronika Lipp. 
 
 Date: Friday 14:15--15:45
+
 Place: Horánszky 106
 
 ## Tematika
 
 | Alkalom | Leírás |
 |---------|--------|
-| 01. | [Technical details. Introduction.](Lexicography_1.pdf) Dictionary types and dictionary evidence. |
+| 01. | [Technical details. Introduction.](Lexicography_1.pdf) Dictionary types and dictionary users. |
 | 02. |  |
 | 03. |  |
 | 04. |  |
