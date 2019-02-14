@@ -10,7 +10,7 @@ Place: Horánszky 106
 
 | Alkalom | Leírás |
 |---------|--------|
-| 01. | [Technical details. Introduction.]() Dictionary types and dictionary evidence. |
+| 01. | [Technical details. Introduction.](Lexicography_1.pdf) Dictionary types and dictionary evidence. |
 | 02. |  |
 | 03. |  |
 | 04. |  |
