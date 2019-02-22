@@ -11,8 +11,8 @@ Place: Horánszky 106
 
 | Alkalom | Leírás |
 |---------|--------|
-| 01. | [Technical details. Introduction.](Lexicography_1.pdf) [Dictionary types and dictionary users.](ppt-hez_1) |
-| 02. |  Lexicographic evidence. [handout](lexico_handout_2019_02_22) and [slides]()|
+| 01. | [Technical details. Introduction.](Lexicography_1.pdf) [Dictionary types and dictionary users.](ppt-hez_1.docx) |
+| 02. |  Lexicographic evidence. [handout](lexico_handout_2019_02_22.pdf) and [slides](lexi_ea_2019_02_22.pdf)|
 | 03. |  |
 | 04. |  |
 | 05. |  |
