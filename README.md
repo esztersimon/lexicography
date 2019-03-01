@@ -11,9 +11,9 @@ Place: Horánszky 106
 
 | Alkalom | Leírás |
 |---------|--------|
-| 01. | [Technical details. Introduction.](Lexicography_1.pdf) [Dictionary types and dictionary users.](ppt-hez_1.docx) |
-| 02. |  Lexicographic evidence. [handout](lexico_handout_2019_02_22.pdf) and [slides](lexi_ea_2019_02_22.pdf)|
-| 03. |  |
+| 01. | [Technical details. 1. Chapter: Introduction.](Lexicography_1.pdf) [2. Chapter: Dictionary types and dictionary users.](ppt-hez_1.docx) |
+| 02. | 3. Chapter: Lexicographic evidence. [handout](lexico_handout_2019_02_22.pdf) and [slides](lexi_ea_2019_02_22.pdf)|
+| 03. | 4. Chapter: Methods and resources. [slides](Lexikografia_KA.pdf) 5. Chapter: Linguistic theory meets lexicography. [handout](lexico_handout.pdf) |
 | 04. |  |
 | 05. |  |
 | 06. |  |
