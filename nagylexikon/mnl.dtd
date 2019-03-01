@@ -1,0 +1,1550 @@
+<!-- DTD a MNL szocikkeihez
+	PUBLIC "-//STEP//DTD Magyar Nagylexikon//HU//V0.1"
+-->
+
+<!ELEMENT mnl  - - (feszek | er-cikk | orszag | allam | varos | geo-obj | 
+               egyeb-cikk | utalo-cikk | mmtabla | mmedia | cikk)+ 
+               --<Title>Magyar Nagylexikon szocikk--
+                >
+
+<!-- a DTD SigmaLink linkekkel hasznalatahoz-->
+<!ENTITY % SigmaLink  "INCLUDE">
+<!ENTITY % Base  "IGNORE">
+
+
+<!-- 1998.10.22 a feldolgozatlan bibliografia elfogadasahoz INCLUDE az internal subset-be-->
+<!ENTITY % Import  "INCLUDE">
+
+<!-- 1998.10.31 atmeneti DTD-re konvertalt cikkekban levo metaadatok kezelesehez INCLUDE kell 
+az internal subset-be-->
+<!ENTITY % Atmeneti  "IGNORE">
+
+<![ %Atmeneti; [
+
+<!ELEMENT metaadat  - - (fizetett-n? , aktualis-n? , torlendo? , szerkeszto? , szerzoje? , atkerult? , 
+		(temakor , (alkod1 , (alkod2 , (alkod3  , (alkod4  , alkod5*)*)*)*)*)+,
+		mellerend* , folerend* , foldr-kod+) --<Title>metaadat-- >
+<!ENTITY % Teljes  "IGNORE">
+
+]]>
+
+<!ENTITY % Teljes  "INCLUDE">
+
+<![ %Teljes;[
+<!ELEMENT metaadat  - - (fizetett-n? , aktualis-n? , torlendo? , szerkeszto? , szerzoje? , atkerult? , 
+		(temakor , (alkod1 , (alkod2 , (alkod3  , (alkod4  , alkod5*)*)*)*)*)+,
+		mellerend* , folerend* , foldr-kod+) --<Title>metaadat-- >
+
+]]>
+
+
+<!ENTITY % para  "((#PCDATA) | zzalsoi | zzfelsoi | zzkiemel | zzalul | 
+               zzfelul | zzkulcsfog | zj | targy | betuki | utalo | 
+               mmhiv | tilde | kapit | kem-pref | szemely | ir-mu | km-mu | 
+               epit-mu | zene-mu | szerep | rendezes | koreografia | film | irod | 
+               matkeplet | kemkeplet | tablazat)" --<Title>para-- >
+
+<!ENTITY % szoveg  "(zzfelsoi | zzalsoi | zzkiemel | zzalul | zzfelul | 
+               betuki | kapit | kem-pref | szemely | utalo | mmhiv | tilde | 
+               zzkulcsfog | zj | (#PCDATA))"
+               --<Title>altalanos szoveg, csak tipografiakat tartalmaz--
+                >
+
+<!-- a dokumentumba kell tenni importkor
+
+<!ENTITY % Import  "INCLUDE">
+
+-->
+
+<![ %Import; [
+
+<!ENTITY % Ready  "IGNORE">
+<!ENTITY % munkai  "(munkai | m-lista+)"
+               --<Title>a feldolgozott munkai tag vagy a feldolgozatlan m-lista--
+                >
+<!ENTITY % irodalma  "(ir+ | ir-lista)" --<Title>a rola szolo irodalom-- >
+
+<!ELEMENT feszek  - - (metaadat , cimszo , nevelo? , rendkiv? , mmhiv* , (
+               er-fej | egyeb-fej)? , kifejt? , ir? , ( hely? , cikkhiv)+ ) +(
+               torolt , beszurt)--<Title>feszek-- >
+
+]]>
+
+
+<!ENTITY % Ready  "INCLUDE">
+
+<![ %Ready; [
+
+<!ENTITY % munkai  "munkai"
+               --<Title>a feldolgozott munkai tag vagy a feldolgozatlan m-lista--
+                >
+
+<!ENTITY % irodalma  "ir" --<Title>a rola szolo irodalom-- >
+
+<!ELEMENT feszek  - - (metaadat , cimszo , nevelo? , rendkiv? , mmhiv* , (
+               er-fej | egyeb-fej)? , kifejt? , ir? , ( hely? , cikkhiv , (hely? , cikkhiv)+)) --<Title>feszek-- >
+
+]]>
+
+
+<!ELEMENT nevvar  - - (nyelv? , nevford? , nevmagy? , (nev | ragadvany) , 
+               nevmagy? , fonetika?, eti?)
+               --<Title>nevenek valtozatai, variansai--
+                >
+
+<!ELEMENT zzfelsoi  - - ((#PCDATA) | zzalsoi | zzfelsoi | zzkiemel | zzalul | zzfelul)* --<Title>felso index-- >
+
+<!ELEMENT zzkiemel  - - (zzalsoi | zzfelsoi | zzalul | zzfelul | tilde | 
+               betuki | (#PCDATA))* --<Title>kiemeles, tipografia-- >
+
+<!ELEMENT zzalsoi  - - ((#PCDATA) | zzalsoi | zzfelsoi | zzkiemel | zzalul | zzfelul)* --<Title>also index-- >
+
+<!ELEMENT ragadvany  - - (#PCDATA) --<Title>ragadvany nev-- >
+
+<!ELEMENT er-ido  - - (mukodes | szul-hal) --<Title>eletrajzi ido ***--
+               --alt. a szuletesi es halalozasi ido, de van amikor egy idoszak van megadva, hogy mikor elt, ill.--
+               --mikor tevekenykedett--
+                >
+
+<!ELEMENT sz  - - (szido , szhely?) --<Title>szuletesi adatok-- >
+
+<!ELEMENT h  - - (hido , hhely?) --<Title>halalozasi adatok-- >
+
+<!ELEMENT er-def  - - ((%para;)* | nemz | muk-ter)* --<Title>definicio-- >
+
+<!ELEMENT kiadadatok  - - (szerzok? , (magyarcim | cimvalt)* , kiadvnev? , kotet? , 
+	       mufaj? , kiadhely? , (evsz , kiszam?)* , magyarul?) +(zzmj)
+               --<Title>az irodalmi mu kiadasanak adatai--
+                >
+
+<!ELEMENT muadatok  - - (stilus? , mufaj? , nev? , (evsz | ahely)+)
+               --<Title>tovabbi adatok a mualkotasrol--
+                >
+
+<!ELEMENT km-mu  - - (cim , kerforma? , muadatok*) +(t) --<Title>kepzomuveszeti muvek-- >
+
+<!ELEMENT zene-mu  - - (zzmj? , ((szerzok? , cim , t? , zeneadatok*) | leiras))? --<Title>zenei fo muvek-- >
+
+<!ELEMENT ir  - - (zzmj? , irod+)
+               --<Title>rola szolo irodalomak jegyzeke--
+                >
+
+<!ELEMENT kiad  - - (mufaj? , ir-mu+)
+               --<Title>kiadasai, megjelent muvei--
+                >
+
+<!ELEMENT szerepek  - - (szerep)+
+               --<Title>szinhaz, tanc, eloado muv.--
+                >
+
+<!ELEMENT filmek  - - (mufaj? , film+)+
+               --<Title>film szereplo es rendezo--
+                >
+
+<!ELEMENT rendezesek  - - (rendezes)+
+               --<Title>szinhaz, tanc, opera,... rendezesek, FILM NEM !!!--
+                >
+
+<!ELEMENT koreografiak  - - (koreografia)+
+               --<Title>szinhaz, tanc, eloado muv.--
+                >
+
+
+<!ELEMENT szul-hal  - - ((sz , h?) | h)
+               --<Title>szuletesi es halalozasi adatok--
+                >
+
+<!ELEMENT mukodes  - - (mido | (#PCDATA))*
+               --<Title>amennyiben eletebol csak az egy tevekenysegenek idejet ismerjuk--
+                >
+
+<!ENTITY % er-adatok  "(fonetika* , nev-kieg? , nevford? , nevmagy? , eti? , 
+               nevvar* , er-ido?)" --<Title>a testverparoknal, csaladtagoknal ismetlodo adatok-- >
+
+<!ELEMENT er-fej  - - ((%er-adatok;)+ , er-def?) +(t) --<Title>a szocikk feje-- >
+
+<!ELEMENT gram  - - (#PCDATA) --<Title>nyelvtan-- >
+
+<!ELEMENT korulir  - - ((#PCDATA) | eti)*
+               --<Title>korulirasa, magyarazat ***--
+               --leiras, hogy egy szobol hogyan szarmazik-- ----
+               --pl. : a Johaz nev rovid formaja-- ----
+               --lehet benne ujabb etimologia:--
+               --pl: <a Colrado (sp. 'szines', 'voros') folyo neverol>--
+                >
+
+<!ELEMENT ered-szo  - - (#PCDATA)
+               --<Title>eredeti nyelven az a szo, amibol szarmazik--
+                >
+
+<!ELEMENT ered-ny  - - (#PCDATA) --<Title>milyen nyelvbol ered-- >
+
+<!ELEMENT resz  - - (#PCDATA)
+               --<Title>hany reszes, melyik reszt csinalta, stb...--
+                >
+
+<!ELEMENT ahely  - - (#PCDATA)
+               --<Title>a hely, ahol az alkotas fellelheto--
+                >
+
+<!ELEMENT cimvalt  - - (%szoveg;)*
+               --<Title>uj kiadasi cim, ami mas, mint az eredeti--
+                >
+
+<!ELEMENT kiszam  - - (#PCDATA) --<Title>kiadasi szam-- >
+
+<!ELEMENT kotet  - - (#PCDATA)
+               --<Title>melyik kotetben jelent meg--
+                >
+
+<!ELEMENT kiadhely  - - (#PCDATA) --<Title>a kiadas helye-- >
+
+<!ELEMENT kiadvnev  - - (#PCDATA)
+               --<Title>kiadvany (pl. folyoirat) neve--
+                >
+
+<!ELEMENT magyarcim  - - (%szoveg;)* --<Title>mu cime magyarul-- >
+
+<!ELEMENT szmin  - - (kotet? , (#PCDATA))
+               --<Title>szerzoi minosites (pl. szerk, tarsszerzo, stb.), vagy a -val,-vel rag--
+               --pl. szerkeszto, tarsszerzo, stb.-- ----
+                >
+
+<!ELEMENT muk-ter  - - (#PCDATA)
+               --<Title>mukodesi terulete, foglalkozasa, tevekenysegi kore--
+               --Jol meghatarozott mukodesi terulet is (pl. tudomanynak melyik szuk aga, sportnak melyik--
+               --resze, irodalomnak melyik jol behatarol teruleet, stb--
+                >
+
+<!ELEMENT hhely  - - (#PCDATA) --<Title>halalozasi hely-- >
+
+<!ELEMENT hido  - - (#PCDATA) --<Title>halalozasi ido-- >
+
+<!ELEMENT szhely  - - (#PCDATA) --<Title>szul. hely-- >
+
+<!ELEMENT szido  - - (#PCDATA) --<Title>szuletesi ido-- >
+
+<!ELEMENT megyeb  - - (#PCDATA)
+               --<Title>mukodesre von. egyeb kifejtes, megjegyzes--
+                >
+
+<!ELEMENT mido  - - (#PCDATA) --<Title>mukodesi idoszak-- >
+
+<!ELEMENT nevford  - - (#PCDATA) --<Title>nevenek forditasa-- >
+
+<!ELEMENT nevtold  - - (#PCDATA) --<Title>nevtoldalek-- >
+
+<!ELEMENT kernev  - - (#PCDATA) --<Title>keresztnev-- >
+
+<!ELEMENT veznev  - - (#PCDATA) --<Title>vezeteknev-- >
+
+<!ELEMENT uralnev  - - (#PCDATA) --<Title>uralokodoi nev, kiralyok papak, uralkodo hercegek-- >
+
+<!ELEMENT fonetika  - - (#PCDATA) --<Title>fonetika-- >
+
+<!ELEMENT betuki  - - (zzalsoi | zzfelsoi | zzalul | zzfelul | tilde | 
+               (#PCDATA))*
+               --<Title>betu kiemeles (pl.: rovidites kifejteskor)--
+                >
+
+<!ELEMENT irod  - - (szerzok? , cim , t? , (forras | kiadadatok | sorozat)*)
+               --<Title>irodalom valakirol vagy valamirol--
+                >
+
+<!ELEMENT magyarjel  - - (#PCDATA)
+               --<Title>magyarul mit jelent (szimpla id. jelek kozott)--
+                >
+
+<!ELEMENT magyarul  - - (zzmj? , (kiadadatok | forras | sorozat)+) --<Title>magyarul-- >
+
+<!ELEMENT egyeb-fej  - - (fonetika* , eti? , (varians | kemkeplet | jel |
+               szaknev)* , (esemeny-hely | esemeny-ido)* , szakjel? , egyeb-def*) +(t) --<Title>egyeb szocik feje-- >
+
+<!ELEMENT jel - - (#PCDATA) -- <Title>mertekegyseg vagy olyan "varians", ami nem dolt-->
+
+<!ELEMENT vallasok  - - (gen-t? , (%para;)*) --<Title>vallasok-- >
+
+<!ELEMENT kereskedelem  - - (gen-t? , (%para;)*) --<Title>kereskedelem-- >
+
+<!ELEMENT banyaszat  - - (gen-t? , (%para;)*) --<Title>banyaszat-- >
+
+<!ELEMENT energia  - - (gen-t? , (%para;)*) --<Title>energia-- >
+
+<!ELEMENT mezogazdasag  - - (gen-t? , (%para;)*) --<Title>mezogazdasag-- >
+
+<!ELEMENT allat  - - (gen-t? , (%para;)*) --<Title>allat-- >
+
+<!ELEMENT noveny  - - (gen-t? , (%para;)*) --<Title>noveny-- >
+
+<!ELEMENT id-forg  - - (gen-t? , (%para;)*) --<Title>idegenforgalom-- >
+
+<!ELEMENT kozlekedes  - - (gen-t? , (%para;)*) --<Title>kozlekedes-- >
+
+<!ELEMENT elovilag  - - (gen-t? , (%para;)*) --<Title>noveny, allat-- >
+
+<!ELEMENT talaj  - - (gen-t? , (%para;)*) --<Title>talaj-- >
+
+<!ELEMENT vizrajz  - - (gen-t? , (%para;)*) --<Title>vizrajz-- >
+
+<!ELEMENT eghajlat  - - (gen-t? , (%para;)*) --<Title>eghajlat-- >
+
+<!ELEMENT orszag-adatok  - - (zaszlo , cimer? , elhelyez? , terkep+ , 
+               hiv-nev , all-form , fovaros , terulet , lakossag , 
+               nepsuru , kozig-be , etnika+ , hiv-nyelv , egyeb-nyelv? , 
+               vallas+ , penznem+ , gnp , gepkocsi? , n-unnep? , 
+               szerv-tag+)
+               --<Title>adatok az orszagrol tablazatban--
+                >
+
+<!ELEMENT eti  - - ((%szoveg;)* | (ered-ny* , ered-szo* , (korulir? | 
+               magyarjel*) , gram?)) --<Title>etimologia-- >
+
+<!ELEMENT szazalek  - - (#PCDATA) --<Title>szazalek-- >
+
+<!ELEMENT nep  - - (#PCDATA) --<Title>nep-- >
+
+<!ELEMENT szerv-tag  - - (szervezet , evsz?) --<Title>szerv-tag-- >
+
+<!ELEMENT n-unnep  - - (#PCDATA) --<Title>n-unnep-- >
+
+<!ELEMENT gnp  - - (dollar , evsz?) --<Title>gnp-- >
+
+<!ELEMENT gepkocsi  - - (#PCDATA) --<Title>gepkocsi-- >
+
+<!ELEMENT egyhaz  - - (#PCDATA) --<Title>egyhaz-- >
+
+<!ELEMENT kulbirtok  - - (all-form , ter-nev+)+ --<Title>kulbirtok-- >
+
+<!ELEMENT all-form  - - (#PCDATA) --<Title>allamforma-- >
+
+<!ELEMENT terulet  - - (#PCDATA) --<Title>terulet-- >
+
+<!ATTLIST terulet   --<Title>terulet-- 
+
+               me  CDATA    #IMPLIED 
+               --<Title>a terulet mertekegysege, a negyzetkilometer az alapertelmezese--
+                >
+
+<!ELEMENT ter-nev  - - (#PCDATA) --<Title>terulet neve-- >
+
+<!ELEMENT egyeb-nyelv  - - (#PCDATA)
+               --<Title>egyeb hasznalt nyelvek--
+                >
+
+<!ELEMENT rovid  - - (gen-t , (#PCDATA)) --<Title>rovidites-- >
+
+<!ELEMENT felszin  - - (gen-t? , (%para;)*) --<Title>felszin-- >
+
+<!ELEMENT pcim  - - (%szoveg;)* --<Title>paragrafus cim-- >
+
+<!ELEMENT all-kifejt  - - ((%para;)* | (fold-helyzet? , termeszet , nepesseg? , gazdasag , 
+               tortenet))
+               --<Title>tovabbi adatok az allamrol--
+                >
+
+
+<!ELEMENT all-fej  - - (fonetika* , eti? , varians* , rovid* , all-def , 
+               allam-adatok) +(t) --<Title>allam fej-- >
+
+<!ELEMENT hiv-nyelv  - - (#PCDATA) --<Title>hiv-nyelv-- >
+
+<!ELEMENT kozig-be  - - ((#PCDATA) , kulbirtok?)? --<Title>kozig-be-- >
+
+<!ELEMENT nepsuru  - - (#PCDATA) --<Title>nepsuruseg-- >
+
+<!ELEMENT lakossag  - - (szama , etnika* , evsz , zzmj?)+ --<Title>lakossag-- >
+
+<!ELEMENT fovaros  - - (#PCDATA) --<Title>fovaros-- >
+
+<!ELEMENT hiv-nev  - - ((#PCDATA) , eti?)+ --<Title>hivatalos nev-- >
+
+<!ELEMENT tszfm  - - (#PCDATA)
+               --<Title>tenger szint feletti magassag--
+                >
+
+<!ELEMENT fejezet  - - (fejezetcim? , p+) --<Title>fejezet-- >
+
+<!ELEMENT geo-fej  - - (fonetika* , eti? , varians* , geo-def) +(t)
+               --<Title>foldrajzi objektum feje--
+                >
+
+<!ELEMENT fejezetcim  - - (%szoveg;)* --<Title>fejezet cim-- >
+
+<!ELEMENT zzfelul  - - (zzalsoi | zzfelsoi | zzalul | tilde | betuki | 
+               zzkiemel | (#PCDATA))* -(zzfelul) --<Title>folehuzas-- >
+
+<!ELEMENT zzalul  - - (zzalsoi | zzfelsoi | zzfelul | tilde | betuki | 
+               zzkiemel | (#PCDATA))* -(zzalul) --<Title>alahuzas-- >
+
+<!ELEMENT munkai  - - (irodalom* & filmek* & szerepek* & rendezesek* & koreografiak* & zene* & kepzomuv* & 
+               epiteszet* & egyeb*) --<Title>munkai-- >
+
+<!ELEMENT melyseg  - - (#PCDATA) --<Title>melyseg-- >
+
+<!ELEMENT szekhely  - - (#PCDATA) --<Title>szekhely-- >
+
+<!ELEMENT mm  - - ((kep | hang | video | animacio | zzmj)+ , (%szoveg;)*) -(
+               mmhiv , utalo)
+               --<Title>az illusztracio, esetleg a szoveges segitseg a kereseshez--
+                >
+
+<!ELEMENT leiras  - - ((%szoveg;) | cim | evsz | op-szam)* --<Title>leiras-- >
+
+<!ELEMENT nagyvaros  - - (#PCDATA) --<Title>nagyvaros-- >
+
+<!ELEMENT penznem  - - ((#PCDATA) , penzvalt?) --<Title>penznem-- >
+
+<!ELEMENT all-def  - - ((%para;)* | hovatart)* --<Title>allam definicio-- >
+
+<!ELEMENT orszag-fej  - - (fonetika* , eti? , varians* , rovid* , 
+               orszag-def , orszag-adatok)  +(t)--<Title>orszag fej-- >
+
+<!ELEMENT hovatart  - - (#PCDATA) --<Title>hovatartozas-- >
+
+<!ELEMENT vallas  - - (egyhaz , szazalek?) --<Title>vallas-- >
+
+<!ELEMENT etnika  - - (nep & szazalek?) --<Title>etnika-- >
+
+<!ELEMENT nyelv  - - (#PCDATA)
+               --<Title>milyen nyelvu irasmod ***--
+               --ide tartozik az is, ha az van megadva, hogy ered. irasmod--
+               ----
+               --ebben adjuk meg azt, hogy milyen nyelvu atirata kovetkezik a nevnek--
+               ----
+                >
+
+<!ELEMENT orszag-def  - - (%para;)* --<Title>orszag-def-- >
+
+<!ELEMENT geo-def  - - ((%para;)* | tszfm | melyseg | terulet | lakossag | 
+               nepsuru | szekhely)+
+               --<Title>Foldrajzi objektum definicioja--
+                >
+
+<!ELEMENT egyeb-def  - - (%para;)* --<Title>egyeb-def-- >
+
+<!ELEMENT kiegadat  - - (#PCDATA)
+               --<Title>kiegeszito adat, KELL-E???--
+                >
+
+<!ELEMENT nemz  - - (#PCDATA) --<Title>nemzetisege-- >
+
+<!ELEMENT hely  - - (#PCDATA)
+               --<Title>uralkodasanak helye, kiralyoknal, papaknal hasznalatos--
+                >
+
+<!ELEMENT cimszo  - - ((#PCDATA) | zzalsoi | zzfelsoi)* -(zzkiemel , 
+               zzalul , zzfelul) --<Title>cimszo (ami bold)-- >
+
+<!ELEMENT cim  - - (szerzo* , (%szoveg;)*) --<Title>egy alkotas cime-- >
+
+<!ELEMENT tcim  - - (%para;)* --<Title>tcim-- >
+
+<!ELEMENT kepala  - - (%para;)*
+               --<Title>kepalairas (fole, melle,...), a cimszo betukivel emelendo ki--
+                >
+
+<!ELEMENT sza  - - ((%szoveg;) | mukodes | szul-hal)*
+               --<Title>ha a lexikonban nem szerepel, akkor a szemelyi adatai--
+               --eletrajzi adatok--
+                >
+
+<!ELEMENT lista  - - (tcim? , p* , fejezet*) -(tablazat) --<Title>lista-- >
+
+<!ELEMENT szemely  - - (nev , t? ,sza? , szemcsop?) --<Title>szemely-- >
+
+<!ELEMENT varos-fej  - - (fonetika* , eti? , varians* , varos-def , (
+               (%szoveg;) | zaszlo | terkep | terulet | lakossag | 
+               nepsuru | etnika | vallas | nyelv | tszfm)*) +(t) --<Title>varos fej-- >
+
+<!ELEMENT varos-def  - - ((%para;)* | hovatart)* --<Title>varos definicio-- >
+
+<!ELEMENT szama  - - (#PCDATA) --<Title>lakossag szama-- >
+
+<!ELEMENT foldr-kod  - - (#PCDATA) --<Title>foldrajzi kod-- >
+
+<!ELEMENT fizetett-n  - - (#PCDATA) --<Title>a kifeizetendo n-szam-- >
+
+<!ELEMENT aktualis-n  - - (#PCDATA) --<Title>az aktualis n-szam-- >
+
+<!ELEMENT temakor  - - (#PCDATA) --<Title>temakor-- >
+
+<!ELEMENT epit-mu  - - (cim , kerforma? , epitadatok*) +(t) --<Title>epiteszeti mu-- >
+
+<!ELEMENT epitadatok  - - (stilus? , (ahely | nev)? , evsz*) +(zzmj) --<Title>epiteszeti adatok-- >
+
+<!ELEMENT evsz  - - (#PCDATA) --<Title>evszam-- >
+
+<!ELEMENT stilus  - - (#PCDATA)
+               --<Title>epiteszeti stilus, korszak, informacio--
+                >
+
+<!ELEMENT szemcsop  - - (szemely+) -(szemcsop) --<Title>szemcsop-- >
+
+<!ELEMENT zzkulcsfog  - - (%szoveg;)* -(zzkulcsfog , targy , mmhiv , 
+               utalo)
+               --<Title>kulcsfogalom, logikailag kiemelt jelentosegu--
+                >
+
+<!ELEMENT ipar  - - (gen-t? , (%para;)*) --<Title>ipar-- >
+
+<!ELEMENT nev-kieg  - - ((veznev | uralnev | m-kernev | kernev | nevtold)+ , 
+               kerforma?)
+               --<Title>a cimszoban elofordulo nev tovabbi reszei--
+                >
+
+<!ELEMENT kifejt  - - ((%para;)* , p* , fejezet*)
+               --<Title>kifejtes, a szocikk torzse--
+                >
+
+<!ELEMENT t  - - ((#PCDATA) | zzkiemel | zzfelsoi | zzalsoi)*
+               --<Title>koto szoveg, pl: ill.,;.--
+                >
+
+<!ELEMENT dollar  - - (#PCDATA) --<Title>dollar-- >
+
+<!ELEMENT szervezet  - - (#PCDATA) --<Title>szervezet-- >
+
+<!ELEMENT szerzok  - - (szmin | szerzo | zzmj)+ --<Title>a mu szerzoi-- >
+
+<!ELEMENT szerzo  - - (nev) --<Title>szerzo neve ***--
+               --ha tobb szerzo van, akkor kulon-kulon szerzo tagbe kell tenni oket--
+                >
+
+<!ELEMENT kem-pref  - - (#PCDATA) --<Title>kemia prefix-- >
+
+<!ELEMENT kapit  - - (#PCDATA) --<Title>kemia prefix belsejeben a kis kapitalissal irt betuk megjelolese-- >
+
+<!ELEMENT szakjel  - - (#PCDATA) --<Title>szakjelzett-- >
+
+<!ELEMENT m-kernev  - - (#PCDATA) --<Title>magyar keresztnev-- >
+
+<!ELEMENT allam-adatok  - - (zaszlo? , terkep? , terulet , lakossag , 
+               etnika* , vallas* , nepsuru? , nyelv? , fovaros? , 
+               nagyvaros* , tszfm? , penznem?) --<Title>allam-adatok-- >
+
+<!ELEMENT termeszet  - - (felszin? , eghajlat? , vizrajz? , talaj? , (
+               elovilag | (noveny , allat))?) --<Title>termeszeti viszonyok-- >
+
+<!ELEMENT nepesseg  - - ((%para;)* , vallasok?) --<Title>nepesseg-- >
+
+<!ELEMENT gazdasag  - - ((%para;)* , mezogazdasag? , energia? , 
+               banyaszat? , ipar? , kozlekedes? , kereskedelem? , 
+               id-forg?) --<Title>gazdasagi elet-- >
+
+<!ELEMENT allamszerv  - - (%para;)* --<Title>allamszervezet-- >
+
+<!ELEMENT fegyvero  - - (%para;)* --<Title>fegyveres erok-- >
+
+<!ELEMENT tortenet  - - (%para;)* --<Title>tortenet-- >
+
+<!ELEMENT szaknev  - - ((#PCDATA) | zzfelsoi | zzalsoi | zzkiemel | 
+               kapit | kem-pref | betuki)*
+               --<Title>a szakirodalomban hasznalt nev: latinnev, kemiai prefixesnev--
+                >
+
+<!ELEMENT zeneadatok  - - (kiegadat? , (op-szam+ | szerzok)? , (magyarcim | 
+               cimvalt)? , mufaj? , kotet? , evsz* , szovkonyv?) +(zzmj)
+               --<Title>zenemuhoz kapcsolodo adatok--
+                >
+
+<!ELEMENT szovkonyv  - - (szerzok) --<Title>szovegkonyv-- >
+
+<!ELEMENT op-szam  - - (#PCDATA) --<Title>zenei mu op. szama-- >
+
+<!ELEMENT mufaj  - - (#PCDATA)
+               --<Title>a mu tipusanak, stilusanak meghatarozasa ***--
+               --pl bronzszobor, akvarell, epulet,...--
+               --zongoramuvek, zenekari muvek,...-- --versek,...--
+                >
+
+<!ELEMENT cikk  - - (metaadat? , cimszo , rendkiv? , fej? , kifejt? , (
+               m-lista | ir-lista)* , reszcikk*) +(
+               torolt , beszurt)--<Title>cikk-- >
+
+<!ELEMENT jelszam  - - (#PCDATA) --<Title>jelentes szama-- >
+
+<!ELEMENT m-lista  - - ((#PCDATA) | zzkiemel | zzalsoi | zzfelsoi | irodalom | ir-muvei | kiad | mufaj | 
+               ir-mu | cim | magyarcim | forras | kiadadatok | sorozat | evsz | 
+               kiszam | kotet | szerzok | filmek | szerepek | rendezesek | koreografiak | szerep | szereplo | 
+               film | resz | szmin | rendezes | koreografia | zene | 
+               zene-muvei | zene-mu | zeneadatok | op-szam | leiras | 
+               kepzomuv | km-muvei | km-mu | ahely | stilus | muadatok | 
+               epiteszet | epit-muvei | epit-mu | epitadatok | egyeb | 
+               egyeb-muvei | tablazat | utalo | betuki)* --<Title>munkai listaja-- >
+
+<!ELEMENT ir-lista  - - ((#PCDATA) | zzkiemel | zzalsoi | zzfelsoi  | zzmj | szerzok | cim | magyarcim | 
+               kotet | mufaj | evsz | kiszam | forras | kiadadatok | sorozat | tablazat | utalo | betuki | irod)*
+               --<Title>rola szolo irodalomak jegyzeke-000--
+                >
+
+<!ELEMENT fej  - - ((%para;) | varians)* --<Title>fej-- >
+
+<!ELEMENT penzvalt  - - (#PCDATA) --<Title>penzvalt-- >
+
+<!ELEMENT fold-helyzet  - - (gen-t? , (%para;)*)
+               --<Title>foldrajzi helyzet (pl. Dominikai Koztarsasag)--
+                >
+
+<!ELEMENT zzmj  - - (gen-t | %szoveg; )+ --<Title>megjegyzes--
+               --pl. bovitett kiadas, valt. kiadas, stb.--
+                >
+
+<!ELEMENT p  - - (pcim? , (%para;)*) --<Title>paragrafus, bekezdes-- >
+
+<!ELEMENT mellerend  - - (#PCDATA)
+               --<Title>a cimszohoz rendelheto cimszavak, pl. Fold melle a tobbi bolygo--
+                >
+
+<!ELEMENT folerend  - - (#PCDATA)
+               --<Title>a cimszohoz rendelheto "nagyobb, tagabb, tartalmazo" cimszavak, pl. Magyaro. fole Europa--
+                >
+
+<!ELEMENT alkod3  - - (#PCDATA)
+               --<Title>az 2 alkoron beluli 3 osztalyozas--
+                >
+
+<!ELEMENT alkod4  - - (#PCDATA)
+               --<Title>az 3 alkoron beluli 4 osztalyozas--
+                >
+
+<!ELEMENT alkod5  - - (#PCDATA)
+               --<Title>az 4 alkoron beluli 5 osztalyozas--
+                >
+
+
+<!ELEMENT alkod2  - - (#PCDATA)
+               --<Title>az 1 alkoron beluli 2 osztalyozas--
+                >
+
+<!ELEMENT alkod1  - - (#PCDATA)
+               --<Title>a temakoron beluli 1 osztalyozas--
+                >
+
+<!ELEMENT torlendo  - - (#PCDATA) --<Title>ez a cikk torlendo-- >
+
+<!ELEMENT kerforma  - - (#PCDATA) --<Title>keresesi forma-- >
+
+<!ELEMENT forras  - - (szerzok? , cim , magyarcim? , mufaj? , kiadvnev? , kotet? ,  
+               kiadhely? , zzmj? , evsz , kiszam?)
+               --<Title>a mu, amiben az alkotas megjelent ***--
+               --pl. egy eposz, kisregeny, milyen irodalmi muben (folyoiratban, antologiaban stb.)--
+               --jelent meg-- ----
+                >
+
+<!ELEMENT sorozat  - - (szerzok? , cim , magyarcim? , mufaj? , kotet? , zzmj? , evsz , kiszam?)
+               --<Title>a sorozat, amiben az alkotas megjelent ***--
+                >
+
+<!ELEMENT szerzoje  - - (#PCDATA) --<Title>a cikk szerzoje-- >
+
+
+<!ELEMENT szerkeszto  - - (#PCDATA) --<Title>a cikk szerkesztoje-- >
+
+<!ELEMENT atkerult  - - (#PCDATA)
+               --<Title>melyik cikkbe kerult at--
+                >
+
+<!ELEMENT utalo-kieg  - - (%szoveg;)* -(utalo , mmhiv , szemely , betuki) --<Title>utalo kiegeszites-- >
+
+<!ELEMENT rendkiv  - - (#PCDATA) --<Title>rendezesi kivetel-- >
+
+<!ELEMENT utalo  - - (%szoveg;)* -(utalo | szemely) --<Title>utalo-- >
+
+<!ELEMENT mmhiv  - - (mmtabla | mmedia) --<Title>mmhiv-- >
+
+<!ELEMENT cikkhiv  - - (er-cikk | orszag | allam | varos | geo-obj | 
+               egyeb-cikk | utalo-cikk)
+               --<Title>homonimakra hivatkozas a feszekbol--
+                >
+
+<!ELEMENT extratab  - - (%para;)* -(mmhiv , utalo , tablazat) --<Title>extratablazat-- >
+
+<!ELEMENT zaszlo  - -  EMPTY  --<Title>zaszlo-- >
+
+<!ELEMENT elhelyez  - -  EMPTY  --<Title>elhelyez-- >
+
+<!ELEMENT cimer  - -  EMPTY  --<Title>cimer-- >
+
+<!ELEMENT terkep  - -  EMPTY  --<Title>terkep-- >
+
+<!ELEMENT kep  - -  EMPTY  --<Title>kep-- >
+
+<!ELEMENT hang  - -  EMPTY  --<Title>hang-- >
+
+<!ELEMENT video  - -  EMPTY  --<Title>video-- >
+
+<!ELEMENT animacio  - -  EMPTY  --<Title>animacio-- >
+
+<!ELEMENT esemeny-ido  - - (%szoveg;)
+               --<Title>az esemeny ideje, intervallumja--
+                >
+
+<!ELEMENT esemeny-hely  - - (%szoveg;)
+               --<Title>az esemeny helye, orszaga--
+                >
+
+<!ELEMENT cimszo-kieg  - - (varians | (%szoveg;))* -(utalo , mmhiv , 
+               szemely , betuki) --<Title>cimszo kiegeszitese-- >
+
+<!ELEMENT ir-mu  - - (zzmj? , cim , t? , (forras | kiadadatok | sorozat)*)
+               --<Title>irasban megjelent muvei, ***--
+                >
+
+<!ELEMENT szereplo  - - (#PCDATA) --<Title>szerepenek neve-- >
+
+<!ELEMENT varians  - - ( ((#PCDATA) | zzfelsoi | zzalsoi | zzkiemel | 
+               kapit | kem-pref | betuki | tilde)* , fonetika? , eti?) --<Title>varians-- >
+
+<!ELEMENT nevelo  - - (#PCDATA) --<Title>nevelo-- >
+
+<!ELEMENT eredet  - - (#PCDATA)
+               --<Title>a multimedia eredete, feltalalhatosaga--
+                >
+
+<!ELEMENT nevmagy  - - (#PCDATA)
+               --<Title>nevenek magyarazata ***--
+               --milyen nev van megadva (eredeti,iroi, leanykori, felvett, stb.)--
+               ----
+                >
+
+<!ELEMENT nev  - - ((tilde | veznev | kernev | uralnev | m-kernev | nevtold)+ , 
+               kerforma?) --<Title>nev-- >
+
+<!ELEMENT tablazat  - - (tcim? , tgroup+) -(tablazat) --<Title>tablazat-- >
+
+<!ELEMENT tgroup  - O (colspec* , spanspec* , thead? , tfoot? , tbody) --<Title>tgroup-- >
+
+<!ELEMENT colspec  - O  EMPTY  --<Title>colspec-- >
+
+<!ELEMENT spanspec  - O  EMPTY  --<Title>spanspec-- >
+
+<!ELEMENT thead  - O (colspec* , row+) -(entrytbl) --<Title>thead-- >
+
+<!ELEMENT tfoot  - O (colspec* , row+) -(entrytbl) --<Title>tfoot-- >
+
+<!ELEMENT tbody  - O (row+) --<Title>tbody-- >
+
+<!ELEMENT row  - O (entry | entrytbl)+ --<Title>row-- >
+
+<!ELEMENT entry  - O (%para;)* --<Title>entry-- >
+
+<!ELEMENT entrytbl  - - (colspec* , spanspec* , thead? , tbody)+ -(
+               entrytbl) --<Title>entrytbl-- >
+
+<!ELEMENT irodalom  - - ((ir-muvei+ , kiad?) | kiad)
+               --<Title>irodalomi munkai tipus szerinti csoportositsban--
+                >
+
+<!ELEMENT gen-t  - -  EMPTY  --<Title>generalt szoveg-- >
+
+<!ELEMENT kepzomuv  - - (km-muvei+)
+               --<Title>kepzomuveszettel kapcs. szemely--
+                >
+
+<!ELEMENT er-cikk  - - (metaadat , hely? , cimszo , rendkiv? , mmhiv* , 
+               er-fej , kifejt? , (%munkai;)? , (%irodalma;)?) +(
+               torolt , beszurt)--<Title>eletrajzi szocikk-- >
+
+<!ELEMENT orszag  - - (metaadat , cimszo , nevelo? , rendkiv? , mmhiv* , 
+               orszag-fej , orszag-kifejt , (%irodalma;)?) +(
+               torolt , beszurt)--<Title>orszag-- >
+
+<!ELEMENT allam  - - (metaadat , cimszo , nevelo? , rendkiv? , mmhiv* , 
+               all-fej , all-kifejt , (%irodalma;)?) +(
+               torolt , beszurt)--<Title>allam-002-- >
+
+<!ELEMENT varos  - - (metaadat , cimszo , nevelo? , rendkiv? , mmhiv* , 
+               varos-fej , kifejt? , (%irodalma;)?) +(
+               torolt , beszurt)--<Title>varos-- >
+
+<!ELEMENT geo-obj  - - (metaadat , cimszo , nevelo? , rendkiv? , mmhiv* , 
+               geo-fej , kifejt? , (%munkai;)? , (%irodalma;)?) +(
+               torolt , beszurt)--<Title>foldrajzi objektum-- >
+
+<!ELEMENT egyeb-cikk  - - (metaadat , cimszo , nevelo? , rendkiv? , 
+               mmhiv* , egyeb-fej , kifejt? , (%munkai;)? , (%irodalma;)?) +(
+               torolt , beszurt)--<Title>egyeb szocikk-- >
+
+<!ELEMENT utalo-cikk  - - (metaadat , cimszo , nevelo? , rendkiv? , t? ,
+               cimszo-kieg? , szakjel? , (utalo , utalo-kieg?)+) +(
+               torolt , beszurt)--<Title>utalo szocikk-- >
+
+<!ELEMENT mmtabla  - - (cimszo , (lista | tablazat | extratab)) +(
+               torolt , beszurt)
+               --<Title>tablazat, amely nem 'szerves' resze a szovegnek--
+                >
+
+<!ELEMENT mmedia  - - (cimszo , (kepala , mm , eredet*)+) +(
+               torolt , beszurt)--<Title>multimedia-- >
+
+<!ELEMENT epiteszet  - - (epit-muvei+) --<Title>epiteszet-- >
+
+<!ELEMENT kemkeplet  - - (((#PCDATA) | zzfelsoi | zzalsoi | zzkiemel | 
+               zzalul | zzfelul | kapit | kem-pref | tilde)* | kep) --<Title>kemiai keplet-- >
+
+<!ELEMENT matkeplet  - - ((%szoveg;)* | kep) --<Title>matkeplet-- >
+
+<!ELEMENT orszag-kifejt  - - (fold-helyzet , termeszet , nepesseg , 
+               gazdasag , allamszerv , fegyvero? , tortenet) --<Title>orszag-kifejt-- >
+
+<!ELEMENT zene  - - (zene-muvei+) --<Title>zene-- >
+
+<!ELEMENT tilde  - - (kerforma?)
+               --<Title>tilde, bibliografiaban a cimszo rovidites is--
+                >
+
+<!ELEMENT ir-muvei  - - (mufaj? , ir-mu+)
+               --<Title>fo, osszes, magyarul megjelent irodalmi muvei--
+                >
+
+<!ELEMENT zene-muvei  - - (mufaj? , zene-mu+) --<Title>zenei muvek-- >
+
+<!ELEMENT km-muvei  - - (mufaj? , (km-mu+ | ir-mu+)) --<Title>kepzomuveszeti muvei-- >
+
+<!ELEMENT epit-muvei  - - (mufaj? , epit-mu+) --<Title>epit-muvei-- >
+
+<!ELEMENT reszcikk  - - (hely? , jelszam , fej , kifejt? , (m-lista | 
+               ir-lista)*) --<Title>reszcikk-- >
+
+<!ELEMENT zj  - -  ANY  --<Title>zarojel-- >
+
+<!ELEMENT torolt  - -  ANY  -(torolt) --<Title>torolt resz-- >
+
+<!ELEMENT beszurt  - -  ANY  -(beszurt) --<Title>beszurt resz-- >
+
+<!ELEMENT targy  - - ((%szoveg;)* , kerforma?) -(targy , mmhiv) --<Title>targy megjelolese-- >
+
+<!ELEMENT egyeb  - - ((egyeb-muvei+ , kiad?) | kiad)
+               --<Title>egyeb teruleten alkoto szemely muvei--
+                >
+
+<!ELEMENT egyeb-muvei  - - (mufaj? , ir-mu+)
+               --<Title>egyeb teruleten tev. ember irasos muvei--
+                >
+
+<!ELEMENT szerep  - - (zzmj? , szereplo , szerzok? , cim?)
+               --<Title>szinhazi, opera szerep--
+                >
+
+<!ELEMENT rendezes  - - (zzmj? , szerzok? , cim , evsz*) --<Title>kulonbozo rendezese-- >
+
+<!ELEMENT film  - - (zzmj? , cim , mufaj? , resz? , evsz? , szmin?) --<Title>film leiras-- >
+
+<!ELEMENT koreografia  - - (zzmj? , cim , mufaj? , szerzok? , evsz)
+               --<Title>kulonbozo koreografiai--
+                >
+
+<!ATTLIST tablazat
+               --<Title>MNL szocikk - Attribute List-000--
+               
+               tabstyle  NMTOKEN    #IMPLIED 
+               --<Title>tabstyle--
+               
+               tocentry  NUMBER   "1"
+               --<Title>tocentry--
+               
+               shortentry  NUMBER    #IMPLIED 
+               --<Title>shortentry--
+               
+               frame (top , bottom , topbot , all , sides , none)  
+                #IMPLIED 
+               --<Title>frame--
+               
+               colsep  NUMBER    #IMPLIED 
+               --<Title>colsep--
+               
+               rowsep  NUMBER    #IMPLIED 
+               --<Title>rowsep--
+               
+               orient (port , land)   #IMPLIED 
+               --<Title>orient--
+               
+               pgwide  NUMBER    #IMPLIED 
+               --<Title>pgwide--
+                >
+
+<!ATTLIST tgroup
+               --<Title>MNL szocikk - Attribute List-001--
+               
+               cols  NUMBER    #REQUIRED 
+               --<Title>cols--
+               
+               tgroupstyle  NMTOKEN    #IMPLIED 
+               --<Title>tgroupstyle--
+               
+               colsep  NUMBER    #IMPLIED 
+               --<Title>colsep--
+               
+               rowsep  NUMBER    #IMPLIED 
+               --<Title>rowsep--
+               
+               align (left , right , center , justify , char)  "left"
+               
+               --<Title>align--
+               
+               charoff  NUTOKEN   "50"
+               --<Title>charoff--
+               
+               char  CDATA   ""
+               --<Title>char--
+                >
+
+<!ATTLIST colspec
+               --<Title>MNL szocikk - Attribute List-002--
+               
+               colnum  NUMBER    #IMPLIED 
+               --<Title>colnum--
+               
+               colname  NMTOKEN    #IMPLIED 
+               --<Title>colname--
+               
+               align (left , right , center , justify , char)  
+                #IMPLIED 
+               --<Title>align-002--
+               
+               charoff  NUTOKEN    #IMPLIED 
+               --<Title>charoff-002--
+               
+               char  CDATA    #IMPLIED 
+               --<Title>char-002--
+               
+               colwidth  CDATA    #IMPLIED 
+               --<Title>colwidth--
+               
+               colsep  NUMBER    #IMPLIED 
+               --<Title>colsep--
+               
+               rowsep  NUMBER    #IMPLIED 
+               --<Title>rowsep--
+                >
+
+<!ATTLIST spanspec
+               --<Title>MNL szocikk - Attribute List-003--
+               
+               namest  NMTOKEN    #REQUIRED 
+               --<Title>namest--
+               
+               nameend  NMTOKEN    #REQUIRED 
+               --<Title>nameend--
+               
+               spanname  NMTOKEN    #REQUIRED 
+               --<Title>spanname--
+               
+               align (left , right , center , justify , char)  "center"
+               
+               --<Title>align-003--
+               
+               charoff  NUTOKEN    #IMPLIED 
+               --<Title>charoff-002--
+               
+               char  CDATA    #IMPLIED 
+               --<Title>char-002--
+               
+               colsep  NUMBER    #IMPLIED 
+               --<Title>colsep--
+               
+               rowsep  NUMBER    #IMPLIED 
+               --<Title>rowsep--
+                >
+
+<!ATTLIST thead
+               --<Title>MNL szocikk - Attribute List-004--
+               
+               valign (top , middle , bottom)  "bottom"
+               
+               --<Title>valign--
+                >
+
+<!ATTLIST tfoot
+               --<Title>MNL szocikk - Attribute List-005--
+               
+               valign (top , middle , bottom)  "top"
+               --<Title>valign-002--
+                >
+
+<!ATTLIST tbody
+               --<Title>MNL szocikk - Attribute List-006--
+               
+               valign (top , middle , bottom)  "top"
+               --<Title>valign-002--
+                >
+
+<!ATTLIST row
+               --<Title>MNL szocikk - Attribute List-007--
+               
+               rowsep  NUMBER    #IMPLIED 
+               --<Title>rowsep--
+                >
+
+<!ATTLIST entry
+               --<Title>MNL szocikk - Attribute List-008--
+               
+               colname  NMTOKEN    #IMPLIED 
+               --<Title>colname--
+               
+               namest  NMTOKEN    #IMPLIED 
+               --<Title>namest-002--
+               
+               nameend  NMTOKEN    #IMPLIED 
+               --<Title>nameend-002--
+               
+               spanname  NMTOKEN    #IMPLIED 
+               --<Title>spanname-002--
+               
+               morerows  NUMBER   "0"
+               --<Title>morerows--
+               
+               colsep  NUMBER    #IMPLIED 
+               --<Title>colsep--
+               
+               rowsep  NUMBER    #IMPLIED 
+               --<Title>rowsep--
+               
+               rotate  NUMBER   "0"
+               --<Title>rotate--
+               
+               valign (top , bottom , middle)  "top"
+               --<Title>valign-003--
+               
+               align (left , right , center , justify , char)  
+                #IMPLIED 
+               --<Title>align-002--
+               
+               charoff  NUTOKEN    #IMPLIED 
+               --<Title>charoff-002--
+               
+               char  CDATA    #IMPLIED 
+               --<Title>char-002--
+                >
+
+<!ATTLIST entrytbl
+               --<Title>MNL szocikk - Attribute List-009--
+               
+               cols  NUMBER    #REQUIRED 
+               --<Title>cols--
+               
+               tgroupstyle  NMTOKEN    #IMPLIED 
+               --<Title>tgroupstyle--
+               
+               colname  NMTOKEN    #IMPLIED 
+               --<Title>colname--
+               
+               spanname  NMTOKEN    #IMPLIED 
+               --<Title>spanname-002--
+               
+               colsep  NUMBER    #IMPLIED 
+               --<Title>colsep--
+               
+               rowsep  NUMBER    #IMPLIED 
+               --<Title>rowsep--
+               
+               align (left , right , center , justify , char)  
+                #IMPLIED 
+               --<Title>align-002--
+               
+               charoff  NUTOKEN    #IMPLIED 
+               --<Title>charoff-002--
+               
+               char  CDATA    #IMPLIED 
+               --<Title>char-002--
+                >
+
+<!ATTLIST irodalom
+               --<Title>Untitled - 1 - Attribute List-000--
+               
+               tip  CDATA    #REQUIRED 
+               --<Title>a mu tipusa--
+               --A muvek felsorolasa elott megjeleno fo, tovabbi, osszegyujtott, magayarul tipusokat adja meg--
+               --F.M., O.M., T.M., M.M., m.,--
+                >
+
+<!ATTLIST gen-t
+               --<Title>MNL szocikk - Attribute List-000-002--
+               
+               ujsor  NUMBER   "1"
+               --<Title>1 = uj sor, 0 = nincs ujsor--
+               
+               kiir (igen , nem)  "igen"
+               --<Title>a generalt szoveg kiirasa--
+                >
+
+<!ATTLIST kepzomuv
+               --<Title>MNL szocikk - Attribute List-001-002--
+               
+               tip  CDATA    #REQUIRED 
+               --<Title>tipusa--
+                >
+
+<!ATTLIST feszek
+               --<Title>MNL szocikk - Attribute List-010--
+               
+               cikk-id CDATA    #IMPLIED 
+               --<Title>cikk azonosito--
+                >
+
+<!ATTLIST er-cikk
+               --<Title>MNL szocikk - Attribute List-010-002--
+               
+               cikk-id CDATA    #IMPLIED 
+               --<Title>cikk azonosito--
+               
+               cr  CDATA    #IMPLIED 
+               --<Title>cimszo rovidites--
+               
+               nr  CDATA    #IMPLIED 
+               --<Title>nev rovidites--
+               
+               tn  CDATA    #IMPLIED 
+               --<Title>teljes nev--
+                >
+
+<!ATTLIST orszag
+               --<Title>MNL szocikk - Attribute List-010-003--
+               
+               cikk-id CDATA    #IMPLIED 
+               --<Title>cikk azonosito--
+               
+               cr  CDATA    #IMPLIED 
+               --<Title>cimszo rovidites--
+                >
+
+<!ATTLIST allam
+               --<Title>MNL szocikk - Attribute List-010-004--
+               
+               cikk-id CDATA    #IMPLIED 
+               --<Title>cikk azonosito--
+               
+               cr  CDATA    #IMPLIED 
+               --<Title>cimszo rovidites--
+                >
+
+<!ATTLIST varos
+               --<Title>MNL szocikk - Attribute List-010-005--
+               
+               cikk-id CDATA    #IMPLIED 
+               --<Title>cikk azonosito--
+               
+               cr  CDATA    #IMPLIED 
+               --<Title>cimszo rovidites--
+                >
+
+<!ATTLIST geo-obj
+               --<Title>MNL szocikk - Attribute List-010-006--
+               
+               cikk-id CDATA    #IMPLIED 
+               --<Title>cikk azonosito--
+               
+               cr  CDATA    #IMPLIED 
+               --<Title>cimszo rovidites--
+                >
+
+<!ATTLIST egyeb-cikk
+               --<Title>MNL szocikk - Attribute List-010-008--
+               
+               cikk-id CDATA    #IMPLIED 
+               --<Title>cikk azonosito--
+               
+               cr  CDATA    #IMPLIED 
+               --<Title>cimszo rovidites--
+                >
+
+<!ATTLIST cikk
+               --<Title>MNL szocikk - Attribute List-010-008--
+               
+               cikk-id CDATA    #IMPLIED 
+               --<Title>cikk azonosito--
+                >
+
+<!ATTLIST utalo-cikk
+               --<Title>MNL szocikk - Attribute List-010-009--
+               
+               cikk-id CDATA    #IMPLIED 
+               --<Title>cikk azonosito--
+                >
+
+<!ATTLIST mmtabla
+               --<Title>MNL szocikk - Attribute List-010-010--
+               
+               cikk-id CDATA    #IMPLIED 
+               --<Title>cikk azonosito--
+                >
+
+<!ATTLIST mmedia
+               --<Title>MNL szocikk - Attribute List-010-011--
+               
+               cikk-id CDATA    #IMPLIED 
+               --<Title>cikk azonosito--
+                >
+
+<!ATTLIST epiteszet
+               --<Title>MNL szocikk - Attribute List-013--
+               
+               tip  CDATA    #REQUIRED 
+               --<Title>tipusa--
+                >
+
+<!ATTLIST kemkeplet
+               --<Title>MNL szocikk - Attribute List-014--
+               
+               ujsor  NUMBER   "0"
+               --<Title>kulon sorba emeli ki--
+                >
+
+<!ATTLIST matkeplet
+               --<Title>MNL szocikk - Attribute List-015--
+               
+               ujsor  NUMBER   "0"
+               --<Title>uj sorba emeli ki--
+                >
+
+<!ATTLIST orszag-kifejt
+               --<Title>MNL szocikk - Attribute List-022--
+               
+               stilus (fejezet , para)  "fejezet"
+               --<Title>fejezet vagy paragrafus--
+                >
+
+
+<!ATTLIST all-kifejt
+               --<Title>MNL szocikk - Attribute List-022--
+               
+               stilus (egysor , para)  "egysor"
+               --<Title>inline vagy paragrafus--
+                >
+
+<!ATTLIST zene
+               --<Title>MNL szocikk - Attribute List-016--
+               
+               opus  CDATA   "op."
+               --<Title>opus prefix, pl. BWV,...--
+               
+               tip  CDATA    #REQUIRED 
+               --<Title>tipusa--
+                >
+
+<!ATTLIST tilde
+               --<Title>MNL szocikk - Attribute List-017--
+               
+               tipus (t , c , n)  "t"
+               --<Title>a tilde tipusa: ~, cimszo rovidites, teljes nev--
+                >
+
+<!ATTLIST ir-muvei
+               --<Title>MNL szocikk - Attribute List-018--
+               
+               ujsor  NUMBER   "1"
+               --<Title>1 = uj sor, 0 = nincs ujsor--
+                >
+
+<!ATTLIST zene-muvei
+               --<Title>MNL szocikk - Attribute List-019--
+               
+               ujsor  NUMBER   "1"
+               --<Title>1 = uj sor, 0 = nincs ujsor--
+                >
+
+<!ATTLIST km-muvei
+               --<Title>MNL szocikk - Attribute List-020--
+               
+               ujsor  NUMBER   "1"
+               --<Title>1 = uj sor, 0 = nincs ujsor--
+                >
+
+<!ATTLIST epit-muvei
+               --<Title>MNL szocikk - Attribute List-021--
+               
+               ujsor  NUMBER   "1"
+               --<Title>1 = uj sor, 0 = nincs ujsor--
+                >
+
+<!ATTLIST reszcikk
+               --<Title>MNL szocikk - Attribute List-023--
+               
+               ujsor  NUMBER   "1"
+               --<Title>1 = uj sor, 0 = nincs ujsor--
+                >
+
+<!ATTLIST zj
+               --<Title>MNL szocikk - Attribute List-024--
+               
+               inherit  CDATA    #FIXED "INHERIT"
+               --<Title>inherit the parent's content model--
+                >
+
+<!ATTLIST torolt
+               --<Title>MNL szocikk - Attribute List-025--
+               
+               inherit  CDATA    #FIXED "INHERIT"
+               --<Title>inherit the parent's content model--
+               
+               ki  CDATA    #REQUIRED 
+               --<Title>kinek a javitasa--
+               
+               mikor  CDATA    #REQUIRED 
+               --<Title>mikor javitotta--
+                >
+
+<!ATTLIST beszurt
+               --<Title>MNL szocikk - Attribute List-026--
+               
+               inherit  CDATA    #FIXED "INHERIT"
+               --<Title>inherit the parent's content model--
+               
+               ki  CDATA    #REQUIRED 
+               --<Title>kinek a javitasa--
+               
+               mikor  CDATA    #REQUIRED 
+               --<Title>mikor javitotta--
+                >
+
+<!ATTLIST targy
+               --<Title>MNL szocikk - Attribute List-027--
+               
+               temakod  CDATA    #IMPLIED 
+               --<Title>ez a fogalom milyen temakorhoz tartozik--
+               
+               besorolas  CDATA    #IMPLIED 
+               --<Title>a kijelolt szoveg besorolasa (pl. fajnev)--
+                >
+
+<!ATTLIST egyeb
+               --<Title>MNL szocikk - Attribute List-028--
+               
+               tip  CDATA    #REQUIRED 
+               --<Title>a mu tipusa--
+               --A muvek felsorolasa elott megjeleno fo, tovabbi, osszegyujtott, magayarul tipusokat adja meg--
+               --F.M., O.M., T.M., M.M., m.,--
+                >
+
+<!ATTLIST egyeb-muvei
+               --<Title>MNL szocikk - Attribute List-029--
+               
+               ujsor  NUMBER   "1"
+               --<Title>1 = uj sor, 0 = nincs ujsor--
+                >
+
+<!ATTLIST szerepek
+               --<Title>MNL szocikk - Attribute List-011--
+               
+               tip  CDATA    #REQUIRED 
+               --<Title>a mu tipusa--
+               --A muvek felsorolasa elott megjeleno fo, tovabbi, osszegyujtott, magayarul tipusokat adja meg--
+               --F.M., O.M., T.M., M.M., m.,--
+                >
+
+<!ATTLIST rendezesek
+               --<Title>MNL szocikk - Attribute List-012--
+               
+               tip  CDATA    #REQUIRED 
+               --<Title>a mu tipusa--
+               --A muvek felsorolasa elott megjeleno fo, tovabbi, osszegyujtott, magayarul tipusokat adja meg--
+               --F.M., O.M., T.M., M.M., m.,--
+                >
+
+<!ATTLIST filmek
+               --<Title>MNL szocikk - Attribute List-030--
+               
+               tip  CDATA    #REQUIRED 
+               --<Title>a mu tipusa--
+               --A muvek felsorolasa elott megjeleno fo, tovabbi, osszegyujtott, magayarul tipusokat adja meg--
+               --F.M., O.M., T.M., M.M., m.,--
+                >
+
+<!ATTLIST koreografiak
+               --<Title>MNL szocikk - Attribute List-031--
+               
+               tip  CDATA    #REQUIRED 
+               --<Title>a mu tipusa--
+               --A muvek felsorolasa elott megjeleno fo, tovabbi, osszegyujtott, magayarul tipusokat adja meg--
+               --F.M., O.M., T.M., M.M., m.,--
+                >
+
+<![ %Base; [
+<!ATTLIST utalo
+               --<Title>MNL szocikk - Attribute List-011--
+               
+               id  IDREF    #IMPLIED 
+               --<Title>id--
+                >
+
+<!ATTLIST mmhiv
+               --<Title>MNL szocikk - Attribute List-012-002--
+               
+               resz  ENTITY    #REQUIRED 
+               --<Title>nev--
+                >
+
+<!ATTLIST extratab
+               --<Title>MNL szocikk - Attribute List-012--
+               
+               nev  ENTITY    #REQUIRED 
+               --<Title>nev-002--
+                >
+
+<!ATTLIST zaszlo
+               --<Title>MNL szocikk - Attribute List-012-002-003--
+               
+               nev  ENTITY    #REQUIRED 
+               --<Title>nev-003--
+                >
+
+<!ATTLIST elhelyez
+               --<Title>MNL szocikk - Attribute List-012-002-003-002--
+               
+               nev  ENTITY    #REQUIRED 
+               --<Title>nev-003--
+                >
+
+<!ATTLIST cimer
+               --<Title>MNL szocikk - Attribute List-012-002-003-003--
+               
+               nev  ENTITY    #REQUIRED 
+               --<Title>nev-003--
+                >
+
+<!ATTLIST terkep
+               --<Title>MNL szocikk - Attribute List-012-002-003-002-002--
+               
+               nev  ENTITY    #REQUIRED 
+               --<Title>nev-003--
+                >
+
+<!ATTLIST kep
+               --<Title>MNL szocikk - Attribute List-012-002-003-003-002--
+               
+               nev  ENTITY    #REQUIRED 
+               --<Title>nev-003--
+                >
+
+<!ATTLIST hang
+               --<Title>MNL szocikk - Attribute List-012-002-002-002--
+               
+               nev  ENTITY    #REQUIRED 
+               --<Title>nev-004--
+                >
+
+<!ATTLIST video
+               --<Title>MNL szocikk - Attribute List-012-003--
+               
+               nev  ENTITY    #REQUIRED 
+               --<Title>nev-005--
+                >
+
+<!ATTLIST animacio
+               --<Title>MNL szocikk - Attribute List-012-004--
+               
+               nev  ENTITY    #REQUIRED 
+               --<Title>nev-006--
+                >
+]]>
+
+<!ATTLIST cikkhiv
+               --<Title>MNL szocikk - Attribute List-012-002-002--
+
+               ujsor  NUMBER   "1"
+               --<Title>uj sor--
+                >
+
+<!ENTITY % ISOpub   PUBLIC "ISO 8879:1986//ENTITIES Publishing//EN"   
+               --<Title>ISOpub--
+                >
+
+<!ENTITY % ISOnum   PUBLIC 
+               "ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN"   
+               --<Title>ISOnum--
+                >
+
+<!ENTITY % ISOtech   PUBLIC 
+               "ISO 8879:1986//ENTITIES General Technical//EN"   
+               --<Title>ISOtech--
+                >
+
+<!ENTITY % ISOdia   PUBLIC 
+               "ISO 8879:1986//ENTITIES Diacritical Marks//EN"   
+               --<Title>ISOdia--
+                >
+
+<!ENTITY % ISOlat1   PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN"   
+               --<Title>ISOlat1--
+                >
+
+<!ENTITY % ISOlat2   PUBLIC "ISO 8879:1986//ENTITIES Added Latin 2//EN"   
+               --<Title>ISOlat2--
+                >
+
+<!ENTITY % ISOamso   PUBLIC 
+               "ISO 8879:1986//ENTITIES Added Math Symbols: Ordinary//EN"   
+               --<Title>ISOamso--
+                >
+
+<!ENTITY % ISOgrk1   PUBLIC "ISO 8879:1986//ENTITIES Greek Letters//EN"   
+               --<Title>ISOgrk1--
+                >
+
+<!ENTITY % ISOgrk2   PUBLIC 
+               "ISO 8879:1986//ENTITIES Monotoniko Greek//EN"   
+               --<Title>ISOgrk2--
+                >
+
+<!ENTITY % ISOgrk3   PUBLIC "ISO 8879:1986//ENTITIES Greek Symbols//EN"   
+               --<Title>ISOgrk3--
+                >
+
+<!ENTITY % ISOamsb   PUBLIC 
+               "ISO 8879-1986//ENTITIES Added Math Symbols: Binary Operators//EN"   
+               --<Title>ISOamsb--
+                >
+
+<!ENTITY % ISOamsa   PUBLIC 
+               "ISO 8879-1986//ENTITIES Added Math Symbols: Arrow Relations//EN"   
+               --<Title>ISOamsa--
+                >
+
+<!ENTITY % ISOcyr1 PUBLIC
+               "ISO 8879-1986//ENTITIES Russian Cyrillic//EN">
+
+<!ENTITY % ISOcyr2 PUBLIC
+               "ISO 8879-1986//ENTITIES Non-Russian Cyrillic//EN">
+
+
+<!ENTITY % STEPphon   PUBLIC 
+               "-//STEP//ENTITIES MNL Phonetic Characters//EN"   
+               --<Title>MNL Phonetic Characters--
+                >
+
+<!ENTITY % STEPnISO   PUBLIC 
+               "-//STEP//ENTITIES MNL non ISO characters//EN"   
+               --<Title>STEPnISO--
+                >
+
+<!ENTITY % STEP4SL   PUBLIC "-//STEP//ENTITIES MNL for SigmaLink//EN"   
+               --<Title>STEP SigmaLink attributes--
+                >
+%STEP4SL;
+%STEPphon;
+%STEPnISO;
+
+%ISOpub;
+%ISOnum;
+%ISOtech;
+%ISOdia;
+%ISOlat1;
+%ISOlat2;
+%ISOamso;
+%ISOgrk1;
+%ISOgrk2;
+%ISOgrk3;
+%ISOamsa;
+%ISOamsb;
+%ISOcyr1;
+%ISOcyr2;
+
+<!NOTATION EPS SYSTEM  --<Title>EPS-- >
+
+<!NOTATION JPG SYSTEM  --<Title>JPG-- >
+
+<!NOTATION GIF SYSTEM  --<Title>GIF-- >
+
+<!NOTATION SGML SYSTEM  --<Title>SGML-- >
+
+<!NOTATION TIF SYSTEM  --<Title>GIF-- >
