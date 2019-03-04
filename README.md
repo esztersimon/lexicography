@@ -13,8 +13,8 @@ Place: Horánszky 106
 |---------|--------|
 | 01. | Technical details. 1. Chapter: Introduction. [slides](Lexicography_1.pdf) 2. Chapter: Dictionary types and dictionary users. [handout](ppt-hez_1.docx) |
 | 02. | 3. Chapter: Lexicographic evidence. [handout](lexico_handout_2019_02_22.pdf) and [slides](lexi_ea_2019_02_22.pdf)|
-| 03. | 4. Chapter: Methods and resources. [slides](Lexikografia_KA.pdf) 5. Chapter: Linguistic theory meets lexicography. [handout](lexico_handout.pdf) |
-| 04. |  |
+| 03. | 4. Chapter: Methods and resources. [slides](Lexikografia_KA.pdf)  |
+| 04. | 5. Chapter: Linguistic theory meets lexicography. [handout](lexico_handout.pdf) |
 | 05. |  |
 | 06. |  |
 | 07. |  |
