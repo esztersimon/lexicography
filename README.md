@@ -15,7 +15,7 @@ Place: Horánszky 106
 | 02. | 3. Chapter: Lexicographic evidence. [handout](lexico_handout_2019_02_22.pdf) and [slides](lexi_ea_2019_02_22.pdf)|
 | 03. | 4. Chapter: Methods and resources. [slides](Lexikografia_KA.pdf)  |
 | 04. | 5. Chapter: Linguistic theory meets lexicography. [handout](lexico_handout.pdf) |
-| 05. |  |
+| 05. | 6. Chapter: Planning the dictionary. [slides](chapter6.pptx) |
 | 06. |  |
 | 07. |  |
 | 08. |  |
