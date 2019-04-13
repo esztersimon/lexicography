@@ -17,7 +17,7 @@ Place: Horánszky 106
 | 04. | 5. Chapter: Linguistic theory meets lexicography. [handout](lexico_handout.pdf) and [slides](lexico5.pdf) |
 | 05. | 6. Chapter: Planning the dictionary. [slides](chapter6.pptx) |
 | 06. |  |
-| 07. |  |
+| 07. | 8. Chapter: Building the database 1.: word senses. [slides](szamlexiko_DodeReka.pdf)|
 | 08. |  |
 | 09. |  |
 | 10. |  |
