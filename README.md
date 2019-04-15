@@ -18,7 +18,7 @@ Place: Horánszky 106
 | 05. | 6. Chapter: Planning the dictionary. [slides](chapter6.pptx) |
 | 06. | 7. Chapter: Planning the entry. [slides](lexikografia7.pdf) |
 | 07. | 8. Chapter: Building the database (1): word senses. [slides](szamlexiko_DodeReka.pdf)|
-| 08. |  |
-| 09. |  |
-| 10. |  |
-| 11. |  |
+| 08. | 9. Chapter: Building the database (2): the lexical unit. |
+| 09. | 10. Chapter: Building the monolingual entry. |
+| 10. | 11. Chapter: The translation stage. |
+| 11. | 12. Chapter: Building the bilingual entry. |
