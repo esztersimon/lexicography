@@ -20,5 +20,5 @@ Place: Horánszky 106
 | 07. | 8. Chapter: Building the database (1): word senses. [slides](szamlexiko_DodeReka.pdf)|
 | 08. | 9. Chapter: Building the database (2): the lexical unit. |
 | 09. | 10. Chapter: Building the monolingual entry. |
-| 10. | 11. Chapter: The translation stage. |
+| 10. | 11. Chapter: The translation stage. [slides](chapter11.pdf) |
 | 11. | 12. Chapter: Building the bilingual entry. |
