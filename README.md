@@ -12,13 +12,13 @@ Place: Horánszky 106
 | Alkalom | Leírás |
 |---------|--------|
 | 01. | Technical details. 1. Chapter: Introduction. [slides](Lexicography_1.pdf) 2. Chapter: Dictionary types and dictionary users. [handout](ppt-hez_1.docx) |
-| 02. | 3. Chapter: Lexicographic evidence. [handout](lexico_handout_2019_02_22.pdf) and [slides](lexi_ea_2019_02_22.pdf)|
-| 03. | 4. Chapter: Methods and resources. [slides](Lexikografia_KA.pdf)  |
+| 02. | 3. Chapter: Lexicographic evidence. [handout](lexico_handout_2019_02_22.pdf) and [slides](lexi_ea_2019_02_22.pdf) |
+| 03. | 4. Chapter: Methods and resources. [slides](Lexikografia_KA.pdf) |
 | 04. | 5. Chapter: Linguistic theory meets lexicography. [handout](lexico_handout.pdf) and [slides](lexico5.pdf) |
 | 05. | 6. Chapter: Planning the dictionary. [slides](chapter6.pptx) |
 | 06. | 7. Chapter: Planning the entry. [slides](lexikografia7.pdf) |
-| 07. | 8. Chapter: Building the database (1): word senses. [slides](szamlexiko_DodeReka.pdf)|
-| 08. | 9. Chapter: Building the database (2): the lexical unit. |
-| 09. | 10. Chapter: Building the monolingual entry. |
+| 07. | 8. Chapter: Building the database (1): word senses. [slides](szamlexiko_DodeReka.pdf) |
+| 08. | 9. Chapter: Building the database (2): the lexical unit. [slides](Lexikogr_fia_9.pdf) |
+| 09. | 10. Chapter: Building the monolingual entry. [slides](lex10_prezi.pdf) |
 | 10. | 11. Chapter: The translation stage. [slides](chapter11.pdf) |
 | 11. | 12. Chapter: Building the bilingual entry. [slides](chapter12.pdf) |
